@@ -2,7 +2,7 @@
 
 Code quiz using DOM and LocalStorage.
 
-![alt text](./assets/images/screenshot.png)
+![screenshot](./assets/images/screenshot.png)
 
 ## Built With
 * HTML
