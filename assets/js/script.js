@@ -2,6 +2,8 @@ var welcomeEl = document.querySelector('#welcome');
 var highScoresLink = document.querySelector('#high-scores');
 var startBtn = document.querySelector('#start-btn');
 var timerText = document.querySelector('#timer-text')
+var i = -1;
+var timeLeft = 60;
 
 var questionEl = document.createElement('h3');
 var options = document.createElement('ul');
@@ -9,6 +11,10 @@ var option1 = document.createElement('li');
 var option2 = document.createElement('li');
 var option3 = document.createElement('li');
 var option4 = document.createElement('li');
+option1.setAttribute('id', 'a');
+option2.setAttribute('id', 'b');
+option3.setAttribute('id', 'c');
+option4.setAttribute('id', 'd');
 
 
 const questions = [
@@ -71,8 +77,6 @@ const questions = [
 ];
 
 function quizTimer() {
-    // set amount of seconds to 70
-    var timeLeft = 70;
     var interval = setInterval(function() {
         if(timeLeft > 0) {
             timerText.textContent = 'Time Left: ' + timeLeft;
@@ -90,29 +94,88 @@ function startQuiz() {
     // clear html welcome screen
     welcomeEl.textContent = '';
 
-    quizTimer();
-
-    for(i = 0; i < questions.length; i++) {
-        questionEl.textContent = questions[i].question;
-        option1.textContent = questions[i].a;
-        option2.textContent = questions[i].b;
-        option3.textContent = questions[i].c;
-        option4.textContent = questions[i].d;
-        option1.addEventListener('click', checkAnswer);
-    }
-
     welcomeEl.appendChild(questionEl);
     welcomeEl.appendChild(options);
+
     options.appendChild(option1);
     options.appendChild(option2);
     options.appendChild(option3);
     options.appendChild(option4);
+
+    askQuestion();
+    quizTimer();
 }
 
-function checkAnswer() {
-    switch (
+function askQuestion() {
+    i++;
+    console.log(questions.length)
+    if (i < questions.length) {
+        questionEl.textContent = questions[i].question;
 
-    )
+        option1.textContent = questions[i].a;
+        option1.addEventListener('click', function(option1){
+            if(option1.target.id === questions[i].answer) {
+                console.log('correct!');
+                askQuestion();
+            }
+            else {
+                console.log('incorrect!');
+                timeLeft -= 10;
+                askQuestion();
+            }
+        });
+
+        option2.textContent = questions[i].b;
+        option2.addEventListener('click', function(option2){
+            if(option2.target.id === questions[i].answer) {
+                console.log('correct!');
+                askQuestion();
+            }
+            else {
+                console.log('incorrect!');
+                timeLeft -= 10;
+                askQuestion();
+            }
+        });
+
+        option3.textContent = questions[i].c;
+        option3.addEventListener('click', function(option3){
+            if(option3.target.id === questions[i].answer) {
+                console.log('correct!');
+                askQuestion();
+            }
+            else {
+                console.log('incorrect!');
+                timeLeft -= 10;
+                askQuestion();
+            }
+                
+        });
+
+        option4.textContent = questions[i].d;
+        option4.addEventListener('click', function(option4){
+            if(option4.target.id.toString() === questions[i].answer) {
+                console.log('correct!');
+                askQuestion();
+            }
+            else {
+                console.log('incorrect!');
+                timeLeft -= 10;
+                askQuestion();
+            }
+        });
+        console.log(i)
+    } 
+    else if (timeLeft === 0) {
+        welcomeEl.textContent = '';
+        console.log('game over')
+        console.log(i)
+    }
+    else {
+        welcomeEl.textContent = '';
+        console.log('game over')
+        console.log(i)
+    }
 }
 
 startBtn.addEventListener('click', startQuiz);

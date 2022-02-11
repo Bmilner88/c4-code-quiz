@@ -37,6 +37,7 @@ body p {
     text-align: center;
     text-decoration: none;
     font-size: 20px;
+    border: none;
 }
 
 #start-btn:hover {
@@ -79,6 +80,6 @@ header h3 a:hover {
     user-select: none;
 }
 
-#welcome ul li:hover {
+#welcome ul button:hover {
     background-color: var(--secondary);
 }
