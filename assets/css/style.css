@@ -77,9 +77,10 @@ header h3 a:hover {
     font-size: 20px;
     border-radius: 10px;
     background-color: var(--tertiary);
-    user-select: none;
+    color: var(--grey);
+    border: none;
 }
 
-#welcome ul button:hover {
+#welcome ul li:hover {
     background-color: var(--secondary);
 }
