@@ -47,6 +47,7 @@ body p {
 header {
     display: flex;
     margin: 35px;
+    justify-content: space-between;
 }
 
 header h3 a {
@@ -56,4 +57,28 @@ header h3 a {
 
 header h3 a:hover {
     text-decoration: underline;
+}
+
+#welcome ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 2%;
+}
+
+#welcome ul li {
+    text-align: center;
+    line-height: 2.5;
+    width: 300px;
+    margin: 5px;
+    list-style: none;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 10px;
+    background-color: var(--tertiary);
+    user-select: none;
+}
+
+#welcome ul li:hover {
+    background-color: var(--secondary);
 }

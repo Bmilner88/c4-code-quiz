@@ -1,10 +1,10 @@
 var welcomeEl = document.querySelector('#welcome');
 var highScoresLink = document.querySelector('#high-scores');
 var startBtn = document.querySelector('#start-btn');
+var timerText = document.querySelector('#timer-text')
 
-var quizTimerDisp = document.createElement('h3');
-var qstnDisplay = document.createElement('h1');
-var options = document.createElement('ol');
+var questionEl = document.createElement('h3');
+var options = document.createElement('ul');
 var option1 = document.createElement('li');
 var option2 = document.createElement('li');
 var option3 = document.createElement('li');
@@ -61,7 +61,7 @@ const questions = [
         answer: 'c'
     },
     {
-        question: "How long is 2112 by rush?",
+        question: "How long is 2112 by Rush?",
         a: '6:59',
         b: '19:15',
         c: '8:12',
@@ -71,15 +71,15 @@ const questions = [
 ];
 
 function quizTimer() {
-    var timeLeft = 80;
-
+    // set amount of seconds to 70
+    var timeLeft = 70;
     var interval = setInterval(function() {
         if(timeLeft > 0) {
-            quizTimerDisp.textContent = timeLeft;
+            timerText.textContent = 'Time Left: ' + timeLeft;
             timeLeft--;
         }
         else {
-            quizTimerDisp.textContent = "Time's Up!";
+            timerText.textContent = "Time's Up!";
             clearInterval(interval);
         };
     }, 1000)
@@ -87,8 +87,32 @@ function quizTimer() {
 
 function startQuiz() {
     console.log('quiz started!');
+    // clear html welcome screen
     welcomeEl.textContent = '';
 
+    quizTimer();
+
+    for(i = 0; i < questions.length; i++) {
+        questionEl.textContent = questions[i].question;
+        option1.textContent = questions[i].a;
+        option2.textContent = questions[i].b;
+        option3.textContent = questions[i].c;
+        option4.textContent = questions[i].d;
+        option1.addEventListener('click', checkAnswer);
+    }
+
+    welcomeEl.appendChild(questionEl);
+    welcomeEl.appendChild(options);
+    options.appendChild(option1);
+    options.appendChild(option2);
+    options.appendChild(option3);
+    options.appendChild(option4);
+}
+
+function checkAnswer() {
+    switch (
+
+    )
 }
 
 startBtn.addEventListener('click', startQuiz);
