@@ -9,8 +9,7 @@
     --grey: #4D5C54;
 }
 
-/*  body  */
-body {
+/* body {
     color: var(--grey);
     text-align: center;
     margin: 15px;
@@ -45,7 +44,7 @@ body p {
     background-color: var(--tertiary);
 }
   
-/* header */
+
 header {
     display: flex;
     margin: 35px;
@@ -109,4 +108,4 @@ header h3 a:hover {
 
 #save-btn:hover {
     background-color: var(--tertiary);
-}
+} */

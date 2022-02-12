@@ -167,16 +167,43 @@ function gameOver() {
     var saveScoreBtn = document.createElement('button');
     var saveScoreDiv = document.createElement('div');
     saveScoreBtn.setAttribute('id', 'save-btn');
+    saveScoreBtn.setAttribute('type', 'submit');
+    saveScoreI.setAttribute('type', 'text');
+    saveScoreI.setAttribute('id', 'initials');
+    saveScoreI.setAttribute('placeholder', 'Initials');
         
     saveScoreh1.textContent = 'Save Your Score!';
-    saveScoreP.textContent = 'Enter your initials below and click the button to save your score!';
+    saveScoreP.innerHTML = 'Enter your initials below and click the button to save your score!</br>Your Score: ' + score + '</p>';
     saveScoreBtn.textContent = 'Save';
 
     saveScoreDiv.append(saveScoreI, saveScoreBtn);
     welcomeEl.append(saveScoreh1, saveScoreP, saveScoreDiv);
+
+    function getInitials() {
+        event.preventDefault();
+        var initials = document.getElementById('initials').value;
+        console.log(initials);
+        return initials;
+    };
+
+    saveScoreBtn.addEventListener('submit', getInitials);
+
+    /* var user = {
+        initials: getInitials(),
+        score: score
+    }; */
+
+    //highScores(user);
 };
 
-function highScores(){};
+function highScores(user){
+    localStorage.setItem('user', JSON.stringify(user));
+};
 
 startBtn.addEventListener('click', startQuiz);
-saveScoreBtn.addEventListener('click', highScores);
+
+
+/*  var taskInfoEl = document.createElement("div");
+    taskInfoEl.className = "task-info";
+    taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
+    listItemEl.appendChild(taskInfoEl); */
