@@ -196,6 +196,7 @@ function saveScore(){
     users.push(user);
     localStorage.setItem('users', JSON.stringify(users));
     userId++;
+    location.href = 'high-scores.html'
 };
 
 function loadScore() {
@@ -210,6 +211,7 @@ function loadScore() {
     savedUsers = JSON.parse(savedUsers);
 
     for (x = 0; x < savedUsers.length; x++) {
+        userId++;
         users.push(savedUsers[x])
     };
 };
