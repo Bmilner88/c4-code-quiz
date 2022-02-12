@@ -4,7 +4,8 @@ var startBtn = document.querySelector('#start-btn');
 var timerText = document.querySelector('#timer-text')
 var i = 0;
 var timeLeft = 70;
-var score = 0
+var score;
+var gameEnd = false;
 
 var questionEl = document.createElement('h3');
 var options = document.createElement('ul');
@@ -78,20 +79,24 @@ const questions = [
 
 function quizTimer() {
     var interval = setInterval(function() {
-        if(timeLeft > 0) {
+        if(gameEnd) {
+            clearInterval(interval);
+        }
+        else if (timeLeft > 0){
             timerText.textContent = 'Time Left: ' + timeLeft;
             timeLeft--;
         }
         else {
             timerText.textContent = "Time's Up!";
             clearInterval(interval);
+            welcomeEl.textContent = '';
+            gameOver();
         };
     }, 1000)
 };
 
 function startQuiz() {
     event.preventDefault();
-    console.log('quiz started!');
 
     // clear html welcome screen
     welcomeEl.textContent = '';
@@ -106,7 +111,6 @@ function startQuiz() {
 }
 
 function askQuestion() {
-    console.log(i)
     if (timeLeft != 0 && i < questions.length) {
         questionEl.textContent = questions[i].question;
 
@@ -129,19 +133,14 @@ function askQuestion() {
     else if(i === questions.length) {
         gameOver();
     }
-    else {
-        gameOver();
-    }
 }
 
 function checkAnswer(option){
     if(option.target.id === questions[i].answer) {
-        console.log('correct!');
         i++
         askQuestion();
     }
     else {
-        console.log('incorrect!');
         timeLeft -= 10;
         i++
         askQuestion();
@@ -149,14 +148,29 @@ function checkAnswer(option){
 };
 
 function gameOver() {
-    option1.removeEventListener('click', checkAnswer)
-    option2.removeEventListener('click', checkAnswer);
-    option3.removeEventListener('click', checkAnswer);
-    option4.removeEventListener('click', checkAnswer);
+    // ends the timer
+    gameEnd = true;
+
+    // resets the html
     welcomeEl.textContent = '';
     timerText.textContent = '';
+
+    // sets the score
     score = timeLeft;
-    console.log('game over')
+    if(score < 0) {
+        score = 0;
+    };
+    
+    // creates the new html elements
+    var saveScoreh1 = document.createElement('h1');
+    var saveScoreP = document.createElement('p');
+    var saveScoreI = document.createElement('input');
+    var saveScoreBtn = document.createElement('button');
+    saveScoreh1.textContent = 'Save Your Score!';
+    saveScoreP.textContent = 'Enter your initials below and click the button to save your score!';
+    saveScoreBtn.textContent = 'Save';
+
+    welcomeEl.append(saveScoreh1, saveScoreP, saveScoreI, saveScoreBtn);
 };
 
 startBtn.addEventListener('click', startQuiz);
