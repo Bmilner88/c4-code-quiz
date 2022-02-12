@@ -38,6 +38,7 @@ body p {
     text-decoration: none;
     font-size: 20px;
     border: none;
+    width: 150px;
 }
 
 #start-btn:hover {
@@ -61,13 +62,11 @@ header h3 a:hover {
 }
 
 #welcome ul {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
     padding: 2%;
 }
 
 #welcome ul li {
+    align-items: center;
     text-align: center;
     line-height: 2.5;
     width: 300px;
@@ -78,9 +77,36 @@ header h3 a:hover {
     border-radius: 10px;
     background-color: var(--tertiary);
     color: var(--grey);
-    border: none;
 }
 
 #welcome ul li:hover {
     background-color: var(--secondary);
+}
+
+#welcome input {
+    margin: 2%;
+    padding: 2%;
+    height: 47px;
+    outline: none;
+    border: none;
+    padding: 12px;
+    border: 2px solid var(--grey);
+    border-radius: 10px;
+    width: 300px;
+}
+
+#save-btn {
+    background-color: var(--primary);
+    border-radius: 15px;
+    color: white;
+    padding: 15px 35px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    border: none;
+    width: 150px;
+}
+
+#save-btn:hover {
+    background-color: var(--tertiary);
 }

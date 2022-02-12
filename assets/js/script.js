@@ -161,17 +161,22 @@ function gameOver() {
         score = 0;
     };
     
-    // creates the new html elements
     var saveScoreh1 = document.createElement('h1');
     var saveScoreP = document.createElement('p');
     var saveScoreI = document.createElement('input');
     var saveScoreBtn = document.createElement('button');
+    var saveScoreDiv = document.createElement('div');
+    saveScoreBtn.setAttribute('id', 'save-btn');
+        
     saveScoreh1.textContent = 'Save Your Score!';
     saveScoreP.textContent = 'Enter your initials below and click the button to save your score!';
     saveScoreBtn.textContent = 'Save';
 
-    welcomeEl.append(saveScoreh1, saveScoreP, saveScoreI, saveScoreBtn);
+    saveScoreDiv.append(saveScoreI, saveScoreBtn);
+    welcomeEl.append(saveScoreh1, saveScoreP, saveScoreDiv);
 };
 
-startBtn.addEventListener('click', startQuiz);
+function highScores(){};
 
+startBtn.addEventListener('click', startQuiz);
+saveScoreBtn.addEventListener('click', highScores);
