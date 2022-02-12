@@ -2,10 +2,6 @@ var welcomeEl = document.querySelector('#welcome');
 var highScoresLink = document.querySelector('#high-scores');
 var startBtn = document.querySelector('#start-btn');
 var timerText = document.querySelector('#timer-text')
-var i = 0;
-var timeLeft = 70;
-var score;
-var gameEnd = false;
 
 var questionEl = document.createElement('h3');
 var options = document.createElement('ul');
@@ -17,6 +13,13 @@ var option3 = document.createElement('li');
 option3.setAttribute('id', 'c');
 var option4 = document.createElement('li');
 option4.setAttribute('id', 'd');
+
+var i = 0;
+var userId = 0;
+var timeLeft = 70;
+var gameEnd = false;
+var score;
+var users = [];
 
 const questions = [
     {
@@ -179,31 +182,35 @@ function gameOver() {
     saveScoreDiv.append(saveScoreI, saveScoreBtn);
     welcomeEl.append(saveScoreh1, saveScoreP, saveScoreDiv);
 
-    function getInitials() {
-        event.preventDefault();
-        var initials = document.getElementById('initials').value;
-        console.log(initials);
-        return initials;
-    };
-
-    saveScoreBtn.addEventListener('submit', getInitials);
-
-    /* var user = {
-        initials: getInitials(),
-        score: score
-    }; */
-
-    //highScores(user);
+    saveScoreBtn.addEventListener('click', saveScore);
 };
 
-function highScores(user){
-    localStorage.setItem('user', JSON.stringify(user));
+function saveScore(){
+    console.log('Score Saved')
+    var user = {
+        id: userId,
+        initials: document.getElementById('initials').value,
+        score: score
+    };
+    users.push(user);
+    localStorage.setItem('users', JSON.stringify(users));
+    userId++;
+};
+
+function loadScore() {
+    var savedUsers = localStorage.getItem('users')
+
+    if(!savedUsers) {
+        return false;
+    }
+
+    console.log('Scores Found')
+
+    savedUsers = JSON.parse(savedUsers);
+
+    for (x = 0; x < savedUsers.length; x++) {
+        users.push(savedUsers[x])
+    };
 };
 
 startBtn.addEventListener('click', startQuiz);
-
-
-/*  var taskInfoEl = document.createElement("div");
-    taskInfoEl.className = "task-info";
-    taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
-    listItemEl.appendChild(taskInfoEl); */
