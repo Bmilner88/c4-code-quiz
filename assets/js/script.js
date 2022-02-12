@@ -186,6 +186,7 @@ function gameOver() {
 };
 
 function saveScore(){
+    loadScore()
     console.log('Score Saved')
     var user = {
         id: userId,
