@@ -20,8 +20,6 @@ function loadScore() {
         return false;
     };
 
-    console.log('Scores Found');
-
     savedUsers = JSON.parse(savedUsers);
 
     for (i = 0; i < savedUsers.length; i++) {
@@ -37,5 +35,3 @@ function loadScore() {
 };
 
 loadScore();
-
-console.log(userId)
