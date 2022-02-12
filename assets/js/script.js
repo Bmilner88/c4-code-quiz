@@ -193,6 +193,12 @@ function saveScore(){
         initials: document.getElementById('initials').value,
         score: score
     };
+    
+    if(!user.initials) {
+        alert('You need to put your initials!');
+        return false;
+    };
+
     users.push(user);
     localStorage.setItem('users', JSON.stringify(users));
     userId++;
